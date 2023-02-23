@@ -1,0 +1,30 @@
+|clkduty
+clkin => count[0].CLK
+clkin => count[1].CLK
+clkin => count[2].CLK
+clkin => count[3].CLK
+clkin => count[4].CLK
+clkin => count[5].CLK
+clkin => count[6].CLK
+clkin => count[7].CLK
+inc => ~NO_FANOUT~
+dec => ~NO_FANOUT~
+reset => count[0].ACLR
+reset => count[1].ACLR
+reset => count[2].ACLR
+reset => count[3].ACLR
+reset => count[4].ACLR
+reset => count[5].ACLR
+reset => count[6].ACLR
+reset => count[7].ACLR
+clk <= LessThan0.DB_MAX_OUTPUT_PORT_TYPE
+d[0] <= count[0].DB_MAX_OUTPUT_PORT_TYPE
+d[1] <= count[1].DB_MAX_OUTPUT_PORT_TYPE
+d[2] <= count[2].DB_MAX_OUTPUT_PORT_TYPE
+d[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
+d[4] <= count[4].DB_MAX_OUTPUT_PORT_TYPE
+d[5] <= count[5].DB_MAX_OUTPUT_PORT_TYPE
+d[6] <= count[6].DB_MAX_OUTPUT_PORT_TYPE
+d[7] <= count[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
