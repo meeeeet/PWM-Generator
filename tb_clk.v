@@ -21,10 +21,7 @@ end
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0,tb_clk);
-    // fork
-    //     #81 inc=0;
-    //     #2000 dec=1;
-    // join
+
     #5 inc=0;
     #1 inc=1;
 
@@ -40,22 +37,9 @@ initial begin
     #10 inc=0;
     #1 inc=1;
 
-    #10 inc=0;
+    #3000 inc=0;
     #1 inc=1;
-
-    #5000 dec=0;
-
-    #2 dec=1;
-    #3 dec=0;
-
-    #2 dec=1;
-    #3 dec=0;
-
-    #2 dec=1;
-    #3 dec=0;
-
-    #2 dec=1;
-    #3 dec=0;
+    
 
 
 

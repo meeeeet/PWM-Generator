@@ -13,7 +13,7 @@ reg [7:0]count=8'd0;
 reg [7:0]duty;
 assign clk= (count<duty)? 1:0;
 
-assign d=count; 
+assign d=duty; 
 
 always @(negedge clkin or negedge reset) begin
     if(reset==0) begin
