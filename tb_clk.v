@@ -52,25 +52,18 @@ initial begin
     #1 inc=1;
     #10 inc=0;
     #1 inc=1;
-    #10 inc1=0;
-    #1 inc1=1;
+    #10 inc=0;
+    #1 inc=1;
 
-    #10 inc1=0;
-    #1 inc1=1;
+    #10 inc=0;
+    #1 inc=1;
 
-    #10 inc1=0;
-    #1 inc1=1;
+    #10 inc=0;
+    #1 inc=1;
 
-    #10 inc1=0;
-    #1 inc1=1;
-    #10 inc1=0;
-    #1 inc1=1;
-    #10 inc1=0;
-    #1 inc1=1;
-    #10 inc1=0;
-    #1 inc1=1;
-    #10 inc1=0;
-    #1 inc1=1;
+    #10 inc=0;
+    #1 inc=1;
+
     // #10 dec1=0;
     // #1 dec1=1;
     // #10 dec1=0;
