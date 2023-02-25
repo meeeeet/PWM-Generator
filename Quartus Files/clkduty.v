@@ -2,6 +2,8 @@ module clkduty(
     input clkin,
    // input reset,
     input inc,
+	 input inc1,
+	 input dec1,
     input dec,
     input reset,
     output clk,
@@ -11,7 +13,7 @@ module clkduty(
 
 reg [7:0]count=8'd0;
 reg [7:0]duty;
-assign clk= (count<8'd15)? 1:0;
+assign clk= (count<duty)? 1:0;
 
 assign d=count; 
 
@@ -29,16 +31,26 @@ always @(negedge clkin or negedge reset) begin
 end
 
 
-always @(negedge inc or negedge dec or negedge reset) begin
+always @(negedge inc,negedge inc1, negedge dec1, negedge dec, negedge reset) begin
     if (reset==1'b0) duty<=8'd0;
 	 
-    if (inc==1'b0) begin
-        duty <= duty+8'd5;
+    else if (inc==1'b0) begin
+        duty <= duty+8'd1;
     end
 
-    if(dec==1'b0)begin
+    else if(dec==1'b0)begin
+        duty<=duty-8'd1;
+    end
+	 
+	 else if(dec1==1'b0)begin
         duty<=duty-8'd5;
     end
+	 
+	 else if(inc1==1'b0)begin
+        duty<=duty-8'd5;
+    end
+	 else
+		duty<=duty;
 end
-
 endmodule
+
