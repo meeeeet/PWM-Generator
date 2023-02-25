@@ -1,31 +1,36 @@
 module clkduty(
     input clkin,
-   // input reset,
-    input inc0, inc1,
-    input dec0, dec1,
+    input inc,
+	input inc1,
+	input dec,
+    input dec1,
     input reset,
-    output clk,clk2,
-    output [6:0]d,
-    output [0:6]d0,d1,d2,d3
+    output clk,
+    output [0:6]D0,
+    output [0:6]D1,
+    output [0:6]D2,
+    output [0:6]D3,
+    output [7:0]d
+
 );
 
 
-reg [6:0]count=7'd0;
-reg [6:0]duty;
+reg [7:0]count=8'd0;
+reg [7:0]duty;
 assign clk= (count<duty)? 1:0;
-assign d=duty; 
+assign d=duty; //for verification
 
-sevensegdis dis(d,d0,d1,d2,d3);
-clkdiv2 clock2(clk,clk2,reset);
+
+DISPLAY d1(duty,D0,D1,D2,D3); //display
 
 
 always @(negedge clkin or negedge reset) begin
     if(reset==0) begin
-        count<=7'd0;
+        count<=8'd0;
     end
 
-    else if (count== 7'd24) begin
-        count<=7'd0;
+    else if (count== 8'd49) begin
+        count<=8'd0;
     end
 
     else
@@ -33,134 +38,81 @@ always @(negedge clkin or negedge reset) begin
 end
 
 
-always @(negedge inc1 or negedge dec1 or negedge reset) begin
-    if (reset==1'b0) duty<=7'd0;
+/* ------------------------- variation in duty cycle ------------------------ */
+always @(negedge inc,negedge inc1, negedge dec1, negedge dec, negedge reset) begin
+    if (reset==1'b0) duty<=8'd0;
 	 
-    if (inc1==1'b0) begin
-        duty <= duty+7'd5;
+    else if (inc==1'b0) begin
+        duty <= duty+8'd1;
     end
 
-    if(dec1==1'b0)begin
-        duty<=duty-7'd5;
+    else if(dec==1'b0)begin
+        duty<=duty-8'd1;
     end
-end
-
-always @(negedge inc0 or negedge dec0) begin	 
-    if (inc0==1'b0) begin
-        duty <= duty+7'd1;
+	 
+	 else if(dec1==1'b0)begin
+        duty<=duty-8'd5;
     end
-
-    if(dec0==1'b0)begin
-        duty<=duty-7'd1;
+	 
+	 else if(inc1==1'b0)begin
+        duty<=duty+8'd5;
     end
-end
-endmodule
-
-
-
-module clkdiv2(in,clk,reset);
-input in,reset;
-output reg clk;
-
-always @(negedge in or negedge reset) begin
-    if(reset==0) clk=0;
-    else
-        clk=~clk;
+	 else
+		duty<=duty;
 end
 endmodule
 
 
-
-module sevensegdis(
-    in,
-    d0,d1,d2,d3
+/* ------------------- interfacing with seven seg. display ------------------ */
+module DISPLAY (
+    input [7:0]duty,
+    output reg [0:6]d0,
+    output reg [0:6]d1,
+    output [0:6]d2,
+    output [0:6]d3
 );
-input [6:0]in;
-output reg [0:6] d0;
-output reg [0:6] d1;
-output reg [0:6] d2;
-output reg [0:6] d3;
 
-always @ (*)
-begin
-    case(in)
+reg [7:0]d_part[2:0];
+always @(*) begin
+    d_part[2]=((duty*2)%1000)/100;
+    d_part[1]=((duty*2)%100)/10;
+    d_part[0]=(duty*2)%10;
+end
 
-        7'd0: begin
-            d0=7'b 0000001;
-            d1=7'b 1111111;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-
-        7'd10: begin
-            d0=7'b 0000001;
-            d1=7'b 1001111;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-
-        7'd20: begin
-            d0=7'b 0000001;
-            d1=7'b 0010010;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-
-        7'd30: begin
-            d0=7'b 0000001;
-            d1=7'b 0000110;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd40: begin
-            d0=7'b 0000001;
-            d1=7'b 1001100;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-
-        7'd50: begin
-            d0=7'b 0000001;
-            d1=7'b 0100100;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd60: begin
-            d0=7'b 0000001;
-            d1=7'b 0100000;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd70: begin
-            d0=7'b 0000001;
-            d1=7'b 0001111;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd80: begin
-            d0=7'b 0000001;
-            d1=7'b 0000000;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd90: begin
-            d0=7'b 0000001;
-            d1=7'b 0000100;
-            d2=7'b 1111111;
-            d3=7'b 1111111;
-        end
-        7'd100: begin
-            d0=7'b 0000001;
-            d1=7'b 0000001;
-            d2=7'b 0011111;
-            d3=7'b 1111111;
-        end
-        default: begin
-            d0=7'b 1111110;
-            d1=7'b 1111110;
-            d2=7'b 1111110;
-            d3=7'b 1111110;
-        end
+always @(d_part[0]) begin
+    case(d_part[0])
+        8'd0 : d0 = 7'b0000001;
+        8'd1 : d0 = 7'b1001111;
+        8'd2 : d0 = 7'b0010010; 
+        8'd3 : d0 = 7'b0000110;
+        8'd4 : d0 = 7'b1001100; 
+        8'd5 : d0 = 7'b0100100; 
+        8'd6 : d0 = 7'b0100000; 
+        8'd7 : d0 = 7'b0001111; 
+        8'd8 : d0 = 7'b0000000;
+        8'd9 : d0 = 7'b0000100; 
+        default: d0 = 7'b1111111;
     endcase
 end
+
+always @(d_part[1]) begin
+    case(d_part[1])
+        8'd0 : d1 = 7'b0000001;
+        8'd1 : d1 = 7'b1001111;
+        8'd2 : d1 = 7'b0010010; 
+        8'd3 : d1 = 7'b0000110;
+        8'd4 : d1 = 7'b1001100; 
+        8'd5 : d1 = 7'b0100100; 
+        8'd6 : d1 = 7'b0100000; 
+        8'd7 : d1 = 7'b0001111; 
+        8'd8 : d1 = 7'b0000000;
+        8'd9 : d1 = 7'b0000100; 
+        default: d1 = 7'b1111111;
+    endcase
+end
+
+assign d2= (d_part[2]==1)? 7'b1001111 : 7'b1111111;
+assign d3=7'b1111111;
+
 endmodule
+
