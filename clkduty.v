@@ -1,15 +1,17 @@
 module clkduty(
-    input clkin,
-    input inc,
-	input inc1,
-	input dec,
-    input dec1,
-    input reset,
-    output clk,
+    input clkin, //input frequency-50MHz
+    input inc,  //increase duty cycle of 2%
+    input inc1,  //increase duty cycle of 10%
+    input dec,   //decrease duty cycle of 2%
+    input dec1,  //decrease duty cycle of 10%
+    input reset,  //reset all settings
+    output clk,  //output signal with 1Mhz
+	//interfacing with seven segment display
     output [0:6]D0,
     output [0:6]D1,
     output [0:6]D2,
     output [0:6]D3,
+	//for verification
     output [7:0]d
 
 );
