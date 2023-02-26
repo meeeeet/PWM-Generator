@@ -19,6 +19,7 @@ PWM_GEN p1(clkin,reset,duty,clk);
 DUTYCYCLE dc1(inc,inc1,dec,dec1,reset,duty);
 DISPLAY d1(duty,D0,D1,D2,D3); //display
 
+
 endmodule
 
 
