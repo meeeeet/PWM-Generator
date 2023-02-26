@@ -1,46 +1,58 @@
 module clkduty(
-    input clkin, //input frequency-50MHz
-    input inc,  //increase duty cycle of 2%
-    input inc1,  //increase duty cycle of 10%
-    input dec,   //decrease duty cycle of 2%
-    input dec1,  //decrease duty cycle of 10%
-    input reset,  //reset all settings
-    output clk,  //output signal with 1Mhz
-	//interfacing with seven segment display
+    input clkin,
+    input inc,
+	input inc1,
+	input dec,
+    input dec1,
+    input reset,
+    output clk,
     output [0:6]D0,
     output [0:6]D1,
     output [0:6]D2,
     output [0:6]D3,
-	//for verification
-    output [7:0]d
-
+    output [7:0]duty
 );
 
 
-reg [7:0]count=8'd0;
-reg [7:0]duty;
-assign clk= (count<duty)? 1:0;
-assign d=duty; //for verification
 
-
+PWM_GEN p1(clkin,reset,duty,clk);
+DUTYCYCLE dc1(inc,inc1,dec,dec1,reset,duty);
 DISPLAY d1(duty,D0,D1,D2,D3); //display
 
+endmodule
 
+
+/* ------------------------ generating output signal ------------------------ */
+module PWM_GEN(
+    input clkin,
+    input reset,
+    input [7:0]duty,
+    output clk
+);
+reg [7:0] count;
 always @(negedge clkin or negedge reset) begin
+
     if(reset==0) begin
         count<=8'd0;
     end
-
-    else if (count== 8'd49) begin
+    else if (count==8'd49) begin
         count<=8'd0;
     end
 
     else
-        count<=count+1'd1;
+        count<=count+8'd1;
 end
+assign clk= (count<(duty/2))? 1:0;
+endmodule
 
 
 /* ------------------------- variation in duty cycle ------------------------ */
+module DUTYCYCLE(
+    input inc,inc1,dec,dec1,reset,
+    output [7:0]duty
+);
+reg duty;
+
 always @(negedge inc,negedge inc1, negedge dec1, negedge dec, negedge reset) begin
     if (reset==1'b0) duty<=8'd0;
 	 
@@ -53,11 +65,11 @@ always @(negedge inc,negedge inc1, negedge dec1, negedge dec, negedge reset) beg
     end
 	 
 	 else if(dec1==1'b0)begin
-        duty<=duty-8'd5;
+        duty<=duty-8'd10;
     end
 	 
 	 else if(inc1==1'b0)begin
-        duty<=duty+8'd5;
+        duty<=duty+8'd10;
     end
 	 else
 		duty<=duty;
@@ -76,9 +88,9 @@ module DISPLAY (
 
 reg [7:0]d_part[2:0];
 always @(*) begin
-    d_part[2]=((duty*2)%1000)/100;
-    d_part[1]=((duty*2)%100)/10;
-    d_part[0]=(duty*2)%10;
+    d_part[2]=((duty)%1000)/100;
+    d_part[1]=((duty)%100)/10;
+    d_part[0]=(duty)%10;
 end
 
 always @(d_part[0]) begin
