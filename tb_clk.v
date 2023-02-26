@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 module tb_clk;
-wire clk;
+wire clk1,clk2;
 reg inc1,inc,dec1,dec;
 reg clkin,reset;
 wire [7:0]d;
@@ -27,42 +27,42 @@ initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0,tb_clk);
 
-    #5 inc=0;
-    #1 inc=1;
+    #5 inc1=0;
+    #1 inc1=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    #10 inc1=0;
+    #1 inc1=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    #10 inc1=0;
+    #1 inc1=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    #10 inc1=0;
+    #1 inc1=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    #10 inc1=0;
+    #1 inc1=1;
 
-    #10 inc=0;
-    #1 inc=1;
-    #10 inc=0;
-    #1 inc=1;
-    #10 inc=0;
-    #1 inc=1;
-    #10 inc=0;
-    #1 inc=1;
-    #10 inc=0;
-    #1 inc=1;
-    #10 inc=0;
-    #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
 
-    #10 inc=0;
-    #1 inc=1;
+    // #10 inc=0;
+    // #1 inc=1;
 
     // #10 dec1=0;
     // #1 dec1=1;
