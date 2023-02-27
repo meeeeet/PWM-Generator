@@ -39,45 +39,63 @@ initial begin
     #10 inc1=0;
     #1 inc1=1;
 
+    #2000 inc1=0;
+    #1 inc1=1;
+
     #10 inc1=0;
     #1 inc1=1;
 
-    // #10 inc=0;
-    // #1 inc=1;
-    // #10 inc=0;
-    // #1 inc=1;
-    // #10 inc=0;
-    // #1 inc=1;
-    // #10 inc=0;
-    // #1 inc=1;
-    // #10 inc=0;
-    // #1 inc=1;
-    // #10 inc=0;
-    // #1 inc=1;
+    #10 inc1=0;
+    #1 inc1=1;
 
-    // #10 inc=0;
-    // #1 inc=1;
+    #6000 dec1=0;
+    #1 dec1=1;
 
-    // #10 inc=0;
-    // #1 inc=1;
+    #1000 dec1=0;
+    #1 dec1=1;
 
-    // #10 inc=0;
-    // #1 inc=1;
+    #10 dec1=0;
+    #1 dec1=1;
 
-    // #10 dec1=0;
-    // #1 dec1=1;
-    // #10 dec1=0;
-    // #1 dec1=1;
-    // #10 dec1=0;
-    // #1 dec1=1;
+    #10 dec1=0;
+    #1 dec1=1;
+
+    #10 inc=0;
+    #1 inc=1;
+
+    #10 inc=0;
+    #1 inc=1;
+
+    #10 inc=0;
+    #1 inc=1;
+
+    #10 inc=0;
+    #1 inc=1;
+
+    #3500
+    inc1=0; inc1=1;
+    #1 inc1=0; #1 inc1=1;
+    #1 inc1=0; #1 inc1=1;
+    #1 inc1=0; #1 inc1=1;
+    #1 inc1=0; #1 inc1=1;
+    #1 inc1=0; #1 inc1=1;
+    #1 inc1=0; #1 inc1=1;
+
+    #2000
+    dec1=0; #1 dec1=1;
+    #1 dec1=0; #1 dec1=1;
+    #1 dec1=0; #1 dec1=1;
 
 
 
-    #10000 $finish;
+
+end
+initial begin
+    #20000 $finish;
 end
 
 initial begin
-    #9000 reset=0;
+    #10000 reset=0;
     #1 reset=1;
 end
 
