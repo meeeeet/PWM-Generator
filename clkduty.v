@@ -50,9 +50,9 @@ endmodule
 /* ------------------------- variation in duty cycle ------------------------ */
 module DUTYCYCLE(
     input inc,inc1,dec,dec1,reset,
-    output [7:0]duty
+    output reg [7:0]duty
 );
-reg duty;
+
 
 always @(negedge inc,negedge inc1, negedge dec1, negedge dec, negedge reset) begin
     if (reset==1'b0) duty<=8'd0;

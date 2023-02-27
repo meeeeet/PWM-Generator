@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at clkduty.v(32): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at clkduty.v(10): object "D1" differs only in case from object "d1" in the same scope

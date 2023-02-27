@@ -1,5 +1,5 @@
 Analysis & Synthesis report for PWM
-Sat Feb 25 15:01:47 2023
+Mon Feb 27 10:19:29 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,10 +13,16 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  8. User-Specified and Inferred Latches
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod2
+ 12. Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod1
+ 13. Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod0
+ 14. Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Div0
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+ 17. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -42,16 +48,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Feb 25 15:01:47 2023           ;
+; Analysis & Synthesis Status        ; Successful - Mon Feb 27 10:19:29 2023           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; PWM                                             ;
 ; Top-level Entity Name              ; clkduty                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 79                                              ;
-;     Total combinational functions  ; 79                                              ;
-;     Dedicated logic registers      ; 16                                              ;
-; Total registers                    ; 16                                              ;
-; Total pins                         ; 15                                              ;
+; Total logic elements               ; 286                                             ;
+;     Total combinational functions  ; 286                                             ;
+;     Dedicated logic registers      ; 15                                              ;
+; Total registers                    ; 15                                              ;
+; Total pins                         ; 43                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -155,53 +161,97 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                       ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                         ; Library ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
-; clkduty.v                        ; yes             ; User Verilog HDL File  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/clkduty.v ;         ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                              ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                          ; Library ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+---------+
+; clkduty.v                        ; yes             ; User Verilog HDL File        ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/clkduty.v                  ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc      ;         ;
+; db/lpm_divide_45m.tdf            ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/lpm_divide_45m.tdf      ;         ;
+; db/sign_div_unsign_bkh.tdf       ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/sign_div_unsign_bkh.tdf ;         ;
+; db/alt_u_div_ove.tdf             ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/alt_u_div_ove.tdf       ;         ;
+; db/add_sub_lkc.tdf               ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/add_sub_lkc.tdf         ;         ;
+; db/add_sub_mkc.tdf               ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/add_sub_mkc.tdf         ;         ;
+; db/lpm_divide_75m.tdf            ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/lpm_divide_75m.tdf      ;         ;
+; db/sign_div_unsign_ekh.tdf       ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/sign_div_unsign_ekh.tdf ;         ;
+; db/alt_u_div_uve.tdf             ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/alt_u_div_uve.tdf       ;         ;
+; db/lpm_divide_h6m.tdf            ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/lpm_divide_h6m.tdf      ;         ;
+; db/sign_div_unsign_1nh.tdf       ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/sign_div_unsign_1nh.tdf ;         ;
+; db/alt_u_div_45f.tdf             ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/alt_u_div_45f.tdf       ;         ;
+; db/lpm_divide_dem.tdf            ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/lpm_divide_dem.tdf      ;         ;
+; db/sign_div_unsign_nlh.tdf       ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/sign_div_unsign_nlh.tdf ;         ;
+; db/alt_u_div_g2f.tdf             ; yes             ; Auto-Generated Megafunction  ; M:/GitHub/PWM-Generator-FPGA/Quartus Files/db/alt_u_div_g2f.tdf       ;         ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimated Total logic elements              ; 79    ;
-;                                             ;       ;
-; Total combinational functions               ; 79    ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 27    ;
-;     -- 3 input functions                    ; 16    ;
-;     -- <=2 input functions                  ; 36    ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 51    ;
-;     -- arithmetic mode                      ; 28    ;
-;                                             ;       ;
-; Total registers                             ; 16    ;
-;     -- Dedicated logic registers            ; 16    ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 15    ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-; Maximum fan-out node                        ; reset ;
-; Maximum fan-out                             ; 26    ;
-; Total fan-out                               ; 283   ;
-; Average fan-out                             ; 2.57  ;
-+---------------------------------------------+-------+
++---------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                         ;
++---------------------------------------------+-----------------------+
+; Resource                                    ; Usage                 ;
++---------------------------------------------+-----------------------+
+; Estimated Total logic elements              ; 286                   ;
+;                                             ;                       ;
+; Total combinational functions               ; 286                   ;
+; Logic element usage by number of LUT inputs ;                       ;
+;     -- 4 input functions                    ; 91                    ;
+;     -- 3 input functions                    ; 60                    ;
+;     -- <=2 input functions                  ; 135                   ;
+;                                             ;                       ;
+; Logic elements by mode                      ;                       ;
+;     -- normal mode                          ; 206                   ;
+;     -- arithmetic mode                      ; 80                    ;
+;                                             ;                       ;
+; Total registers                             ; 15                    ;
+;     -- Dedicated logic registers            ; 15                    ;
+;     -- I/O registers                        ; 0                     ;
+;                                             ;                       ;
+; I/O pins                                    ; 43                    ;
+; Embedded Multiplier 9-bit elements          ; 0                     ;
+; Maximum fan-out node                        ; DUTYCYCLE:dc1|duty[0] ;
+; Maximum fan-out                             ; 25                    ;
+; Total fan-out                               ; 861                   ;
+; Average fan-out                             ; 2.50                  ;
++---------------------------------------------+-----------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |clkduty                   ; 79 (79)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |clkduty            ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                        ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                 ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+--------------+
+; |clkduty                                  ; 286 (0)           ; 15 (0)       ; 0           ; 0            ; 0       ; 0         ; 43   ; 0            ; |clkduty                                                                                                            ; work         ;
+;    |DISPLAY:d1|                           ; 189 (70)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1                                                                                                 ; work         ;
+;       |lpm_divide:Div0|                   ; 26 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Div0                                                                                 ; work         ;
+;          |lpm_divide_dem:auto_generated|  ; 26 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Div0|lpm_divide_dem:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_nlh:divider| ; 26 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Div0|lpm_divide_dem:auto_generated|sign_div_unsign_nlh:divider                       ; work         ;
+;                |alt_u_div_g2f:divider|    ; 26 (26)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Div0|lpm_divide_dem:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_g2f:divider ; work         ;
+;       |lpm_divide:Mod1|                   ; 34 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod1                                                                                 ; work         ;
+;          |lpm_divide_75m:auto_generated|  ; 34 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod1|lpm_divide_75m:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_ekh:divider| ; 34 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod1|lpm_divide_75m:auto_generated|sign_div_unsign_ekh:divider                       ; work         ;
+;                |alt_u_div_uve:divider|    ; 34 (34)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod1|lpm_divide_75m:auto_generated|sign_div_unsign_ekh:divider|alt_u_div_uve:divider ; work         ;
+;       |lpm_divide:Mod2|                   ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod2                                                                                 ; work         ;
+;          |lpm_divide_45m:auto_generated|  ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod2|lpm_divide_45m:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_bkh:divider| ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod2|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                       ; work         ;
+;                |alt_u_div_ove:divider|    ; 59 (59)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DISPLAY:d1|lpm_divide:Mod2|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider ; work         ;
+;    |DUTYCYCLE:dc1|                        ; 76 (76)           ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|DUTYCYCLE:dc1                                                                                              ; work         ;
+;    |PWM_GEN:p1|                           ; 21 (21)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |clkduty|PWM_GEN:p1                                                                                                 ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                 ;
++----------------------------------------------------+-----------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal   ; Free of Timing Hazards ;
++----------------------------------------------------+-----------------------+------------------------+
+; DUTYCYCLE:dc1|duty[0]                              ; DUTYCYCLE:dc1|duty[0] ; yes                    ;
+; Number of user-specified and inferred latches = 1  ;                       ;                        ;
++----------------------------------------------------+-----------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -209,23 +259,115 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 16    ;
+; Total registers                              ; 15    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 16    ;
+; Number of registers using Asynchronous Clear ; 15    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |clkduty|duty[7]           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |clkduty|DUTYCYCLE:dc1|duty[7] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod2 ;
++------------------------+----------------+-----------------------------------+
+; Parameter Name         ; Value          ; Type                              ;
++------------------------+----------------+-----------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                           ;
+; LPM_WIDTHD             ; 4              ; Untyped                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                           ;
+; CBXI_PARAMETER         ; lpm_divide_45m ; Untyped                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                    ;
++------------------------+----------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod1 ;
++------------------------+----------------+-----------------------------------+
+; Parameter Name         ; Value          ; Type                              ;
++------------------------+----------------+-----------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                           ;
+; LPM_WIDTHD             ; 7              ; Untyped                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                           ;
+; CBXI_PARAMETER         ; lpm_divide_75m ; Untyped                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                    ;
++------------------------+----------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Mod0 ;
++------------------------+----------------+-----------------------------------+
+; Parameter Name         ; Value          ; Type                              ;
++------------------------+----------------+-----------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                           ;
+; LPM_WIDTHD             ; 10             ; Untyped                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                           ;
+; CBXI_PARAMETER         ; lpm_divide_h6m ; Untyped                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                    ;
++------------------------+----------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DISPLAY:d1|lpm_divide:Div0 ;
++------------------------+----------------+-----------------------------------+
+; Parameter Name         ; Value          ; Type                              ;
++------------------------+----------------+-----------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                           ;
+; LPM_WIDTHD             ; 7              ; Untyped                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                           ;
+; CBXI_PARAMETER         ; lpm_divide_dem ; Untyped                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                    ;
++------------------------+----------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-------------------------------+
@@ -233,7 +375,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -243,34 +385,125 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Feb 25 15:01:45 2023
+    Info: Processing started: Mon Feb 27 10:19:26 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off PWM -c PWM
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (12021): Found 1 design units, including 1 entities, in source file clkduty.v
+Info (12021): Found 4 design units, including 4 entities, in source file clkduty.v
     Info (12023): Found entity 1: clkduty
+    Info (12023): Found entity 2: PWM_GEN
+    Info (12023): Found entity 3: DUTYCYCLE
+    Info (12023): Found entity 4: DISPLAY
 Info (12021): Found 1 design units, including 1 entities, in source file count.v
     Info (12023): Found entity 1: count
 Info (12127): Elaborating entity "clkduty" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at clkduty.v(16): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "PWM_GEN" for hierarchy "PWM_GEN:p1"
+Warning (10230): Verilog HDL assignment warning at clkduty.v(46): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "DUTYCYCLE" for hierarchy "DUTYCYCLE:dc1"
+Warning (10240): Verilog HDL Always Construct warning at clkduty.v(57): inferring latch(es) for variable "duty", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "duty[0]" at clkduty.v(57)
+Info (12128): Elaborating entity "DISPLAY" for hierarchy "DISPLAY:d1"
+Warning (10230): Verilog HDL assignment warning at clkduty.v(92): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at clkduty.v(93): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at clkduty.v(94): truncated value with size 32 to match size of target (8)
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DISPLAY:d1|Mod2"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DISPLAY:d1|Mod1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DISPLAY:d1|Mod0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DISPLAY:d1|Div0"
+Info (12130): Elaborated megafunction instantiation "DISPLAY:d1|lpm_divide:Mod2"
+Info (12133): Instantiated megafunction "DISPLAY:d1|lpm_divide:Mod2" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_45m.tdf
+    Info (12023): Found entity 1: lpm_divide_45m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_bkh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ove.tdf
+    Info (12023): Found entity 1: alt_u_div_ove
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_lkc.tdf
+    Info (12023): Found entity 1: add_sub_lkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
+    Info (12023): Found entity 1: add_sub_mkc
+Info (12130): Elaborated megafunction instantiation "DISPLAY:d1|lpm_divide:Mod1"
+Info (12133): Instantiated megafunction "DISPLAY:d1|lpm_divide:Mod1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_75m.tdf
+    Info (12023): Found entity 1: lpm_divide_75m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_ekh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_ekh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uve.tdf
+    Info (12023): Found entity 1: alt_u_div_uve
+Info (12130): Elaborated megafunction instantiation "DISPLAY:d1|lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "DISPLAY:d1|lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "10"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_h6m.tdf
+    Info (12023): Found entity 1: lpm_divide_h6m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_1nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_1nh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_45f.tdf
+    Info (12023): Found entity 1: alt_u_div_45f
+Info (12130): Elaborated megafunction instantiation "DISPLAY:d1|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "DISPLAY:d1|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_dem.tdf
+    Info (12023): Found entity 1: lpm_divide_dem
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_nlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_nlh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_g2f.tdf
+    Info (12023): Found entity 1: alt_u_div_g2f
+Warning (13012): Latch DUTYCYCLE:dc1|duty[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal inc
 Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
-    Warning (13310): Register "duty[7]" is converted into an equivalent circuit using register "duty[7]~_emulated" and latch "duty[7]~1"
-    Warning (13310): Register "duty[6]" is converted into an equivalent circuit using register "duty[6]~_emulated" and latch "duty[6]~6"
-    Warning (13310): Register "duty[5]" is converted into an equivalent circuit using register "duty[5]~_emulated" and latch "duty[5]~11"
-    Warning (13310): Register "duty[4]" is converted into an equivalent circuit using register "duty[4]~_emulated" and latch "duty[4]~16"
-    Warning (13310): Register "duty[3]" is converted into an equivalent circuit using register "duty[3]~_emulated" and latch "duty[3]~21"
-    Warning (13310): Register "duty[2]" is converted into an equivalent circuit using register "duty[2]~_emulated" and latch "duty[2]~26"
-    Warning (13310): Register "duty[1]" is converted into an equivalent circuit using register "duty[1]~_emulated" and latch "duty[1]~31"
-    Warning (13310): Register "duty[0]" is converted into an equivalent circuit using register "duty[0]~_emulated" and latch "duty[0]~36"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[7]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[7]~_emulated" and latch "DUTYCYCLE:dc1|duty[7]~1"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[6]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[6]~_emulated" and latch "DUTYCYCLE:dc1|duty[6]~6"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[5]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[5]~_emulated" and latch "DUTYCYCLE:dc1|duty[5]~11"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[4]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[4]~_emulated" and latch "DUTYCYCLE:dc1|duty[4]~16"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[3]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[3]~_emulated" and latch "DUTYCYCLE:dc1|duty[3]~21"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[2]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[2]~_emulated" and latch "DUTYCYCLE:dc1|duty[2]~26"
+    Warning (13310): Register "DUTYCYCLE:dc1|duty[1]" is converted into an equivalent circuit using register "DUTYCYCLE:dc1|duty[1]~_emulated" and latch "DUTYCYCLE:dc1|duty[1]~31"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "D2[6]" is stuck at VCC
+    Warning (13410): Pin "D2[5]" is stuck at VCC
+    Warning (13410): Pin "D2[4]" is stuck at VCC
+    Warning (13410): Pin "D2[3]" is stuck at VCC
+    Warning (13410): Pin "D2[0]" is stuck at VCC
+    Warning (13410): Pin "D3[6]" is stuck at VCC
+    Warning (13410): Pin "D3[5]" is stuck at VCC
+    Warning (13410): Pin "D3[4]" is stuck at VCC
+    Warning (13410): Pin "D3[3]" is stuck at VCC
+    Warning (13410): Pin "D3[2]" is stuck at VCC
+    Warning (13410): Pin "D3[1]" is stuck at VCC
+    Warning (13410): Pin "D3[0]" is stuck at VCC
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "DISPLAY:d1|lpm_divide:Div0|lpm_divide_dem:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_g2f:divider|add_sub_8_result_int[1]~14"
+Info (144001): Generated suppressed messages file M:/GitHub/PWM-Generator-FPGA/Quartus Files/output_files/PWM.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 94 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 330 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
-    Info (21059): Implemented 9 output pins
-    Info (21061): Implemented 79 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 4596 megabytes
-    Info: Processing ended: Sat Feb 25 15:01:47 2023
-    Info: Elapsed time: 00:00:02
+    Info (21059): Implemented 37 output pins
+    Info (21061): Implemented 287 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 29 warnings
+    Info: Peak virtual memory: 4614 megabytes
+    Info: Processing ended: Mon Feb 27 10:19:29 2023
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:01
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in M:/GitHub/PWM-Generator-FPGA/Quartus Files/output_files/PWM.map.smsg.
 
 
