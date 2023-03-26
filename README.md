@@ -1,6 +1,6 @@
 
 # PWM Generator with variable duty cycle using FPGA
-Pulse Width Modulation (PWM) is a very popular modulation technique which is mainly used to control the power delivered to electrical devices such as motors and controling brightness of LEDs.
+Pulse Width Modulation (PWM) is a very popular modulation technique which is mainly used to control the power delivered to electrical devices such as motors and controling brightness of LEDs as well as in many communication systems.
 ### Pin Description:
 #### Inputs:
 - clkin - Input clock siganl of 50MHz
