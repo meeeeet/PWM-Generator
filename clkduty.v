@@ -1,8 +1,8 @@
 module clkduty(
     input clkin,
     input inc,
-	input inc1,
-	input dec,
+    input inc1,
+    input dec,
     input dec1,
     input reset,
     output clk,
